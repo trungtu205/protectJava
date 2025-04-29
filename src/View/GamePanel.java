@@ -124,9 +124,9 @@ public class GamePanel extends JPanel {
 		if (gameState.isPaused() && !gameState.isGameOver()) {
 			g2d.setColor(Color.RED);
 			g2d.setFont(new Font("Arial", Font.BOLD, (int)(40 * scaleY)));
-			g2d.drawString("PAUSED", (int)(180 * scaleX), (int)(220 * scaleY));
+			g2d.drawString("PAUSED", (int)((GameConstants.GAME_WIDTH/2 - 70) * scaleX), (int)((GameConstants.GAME_HEIGHT/2) * scaleY));
 			g2d.setFont(new Font("Arial", Font.PLAIN, (int)(20 * scaleY)));
-			g2d.drawString("Press D to resume", (int)(180 * scaleX), (int)(240 * scaleY));
+			g2d.drawString("Press P to resume", (int)((GameConstants.GAME_WIDTH/2 - 70) * scaleX), (int)((GameConstants.GAME_HEIGHT/2 + 20)  * scaleY));
 		}
 	}
 

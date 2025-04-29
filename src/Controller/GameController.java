@@ -119,6 +119,7 @@ public class GameController implements IGameController {
 	 */
 	@Override
 	public void exitGame() {
+		
 			System.exit(0);
 		
 	}
@@ -126,7 +127,7 @@ public class GameController implements IGameController {
 	@Override
 	public void pauseGame() {
 		if (gameState.isPaused() == false) {
-
+			gameState.setPaused(true);
 			gamePanel.refresh();
 		}
 

@@ -34,7 +34,7 @@ public class GameWindow extends JFrame {
 	private void showMenu() {
 		extracted();
 		menuPanel.addStartListener(e -> startGame());
-		menuPanel.addExitListener(e -> controller.exitGame());
+		menuPanel.addExitListener(e -> System.exit(0));
 		menuPanel.addInstructionsListener(e -> showInstructions());
 		menuPanel.addInfoListener(e -> showInfo());
 		setContentPane(menuPanel);
