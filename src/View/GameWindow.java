@@ -31,7 +31,7 @@ public class GameWindow extends JFrame {
 	/**
 	 * Hiển thị menu chính.
 	 */
-	private void showMenu() {
+	public void showMenu() {
 		extracted();
 		menuPanel.addStartListener(e -> startGame());
 		menuPanel.addExitListener(e -> System.exit(0));
@@ -57,7 +57,7 @@ public class GameWindow extends JFrame {
 		Paddle paddle = new Paddle(GameConstants.PADDLE_START_X, GameConstants.PADDLE_START_Y);
 		GameState gameState = new GameState();
 		controller = new GameController(ball, paddle, gameState, null);
-		gamePanel = new GamePanel(ball, paddle, gameState, controller);
+		gamePanel = new GamePanel(ball, paddle, gameState,controller, this);
 		controller.setGamePanel(gamePanel);
 
 		controller.startGame();

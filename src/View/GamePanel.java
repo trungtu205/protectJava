@@ -17,7 +17,8 @@ public class GamePanel extends JPanel {
 	private final Paddle paddle;
 	private final GameState gameState;
 	private final GameController controller;
-
+	private final GameWindow gamewindow;
+	
 	/**
 	 * Khởi tạo GamePanel với các đối tượng game.
 	 *
@@ -26,11 +27,12 @@ public class GamePanel extends JPanel {
 	 * @param gameState  Trạng thái game
 	 * @param controller Bộ điều khiển game
 	 */
-	public GamePanel(Ball ball, Paddle paddle, GameState gameState, GameController controller) {
+	public GamePanel(Ball ball, Paddle paddle, GameState gameState, GameController controller , GameWindow gamewindow) {
 		this.ball = ball;
 		this.paddle = paddle;
 		this.gameState = gameState;
 		this.controller = controller;
+		this.gamewindow = gamewindow;
 
 		setPreferredSize(new Dimension(GameConstants.GAME_WIDTH, GameConstants.GAME_HEIGHT));
 		setBackground(Color.DARK_GRAY);
@@ -61,7 +63,12 @@ public class GamePanel extends JPanel {
 						controller.resumeGame();
 				} else if (key == KeyEvent.VK_SPACE && gameState.isGameOver()) {
 					controller.startGame();
+				} else if(key == KeyEvent.VK_ESCAPE && gameState.isGameOver()) {
+					
+					gamewindow.showMenu();
+					
 				}
+				
 			}
 		});
 	}
