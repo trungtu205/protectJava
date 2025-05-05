@@ -110,9 +110,10 @@ public class GamePanel extends JPanel {
 
 		// Vẽ điểm
 		g2d.setColor(Color.green);
-		g2d.setFont(new Font("Arial", Font.PLAIN, (int)(16 * scale)));
+		g2d.setFont(new Font("Arial", Font.PLAIN, (int)(15 * scale)));
 		g2d.drawString("Score: " + gameState.getScore(), (int)(10 * scaleX), (int)(25 * scaleY));
 		g2d.drawString("High Score: " + gameState.getHighScore(), (int)(10 * scaleX), (int)(45 * scaleY));
+		g2d.drawString("Lives: " + controller.getLives(), (int)(10 * scaleX), (int)(65 * scaleY));
 
 		// Game over
 		if (gameState.isGameOver()) {

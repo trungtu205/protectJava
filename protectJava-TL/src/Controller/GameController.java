@@ -13,6 +13,7 @@ public class GameController implements IGameController {
 	private Paddle paddle;
 	private GameState gameState;
 	private GamePanel gamePanel;
+	private int lives=3;
 
 	/**
 	 * Khởi tạo GameController với các đối tượng game.
@@ -70,8 +71,12 @@ public class GameController implements IGameController {
 
 			// Kiểm tra game over
 			if (ball.getY() + ball.getSize() >= GameConstants.GAME_HEIGHT) {
-				gameState.setGameOver(true);
-				gameState.checkHighScore();
+				lives--;
+				ball.reset();
+				if(lives==0){
+					gameState.setGameOver(true);
+					gameState.checkHighScore();
+				}
 			}
 		}
 	}
@@ -144,6 +149,9 @@ public class GameController implements IGameController {
 			gamePanel.refresh();
 		}
 
+	}
+	public int getLives(){
+		return lives;
 	}
 
 }

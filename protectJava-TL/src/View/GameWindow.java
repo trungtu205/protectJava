@@ -74,6 +74,7 @@ public class GameWindow extends JFrame {
 		});
 		timer.start();
 	}
+
 	private void showInstructions() {
 		JDialog dialog = new JDialog(this, "Instructions", true);
 		int realWidth = getWidth();
@@ -90,10 +91,10 @@ public class GameWindow extends JFrame {
 		panel.setBackground(new Color(44, 62, 80)); // Màu nền đậm
 
 		// Tạo JLabel với hướng dẫn
-		JLabel instructionsLabel = new JLabel("<html><p style='color:white; font-size:18px;'>Use arrow keys to move the paddle.<br>Avoid the obstacles and reach the goal!</p></html>");
+		JLabel instructionsLabel = new JLabel("<html><p style='color:white; font-size:18px*scaleX;margin:8px'>Use arrow keys to move the paddle to the left or right.<br>Keep the ball not falling and reach the goal!</p></html>");
 		instructionsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		instructionsLabel.setVerticalAlignment(SwingConstants.CENTER);
-		instructionsLabel.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		instructionsLabel.setFont(new Font("Segoe UI", Font.PLAIN, (int) (18*scaleY)));
 
 		// Thêm JLabel vào JPanel
 		panel.add(instructionsLabel, BorderLayout.CENTER);
@@ -119,10 +120,10 @@ public class GameWindow extends JFrame {
 		panel.setBackground(new Color(44, 62, 80)); // Màu nền đậm
 
 		// Tạo JLabel với thông tin về game
-		JLabel infoLabel = new JLabel("<html><p style='color:white; font-size:18px;'>Bounce Ball Adventure<br>Version 1.0<br>Developed by YourTeam!</p></html>");
+		JLabel infoLabel = new JLabel("<html><p style='color:white; font-size:18px*scaleX;'>Bounce Ball Adventure<br>Version 1.0<br>Developed by TuLaLiTeam!</p></html>");
 		infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		infoLabel.setVerticalAlignment(SwingConstants.CENTER);
-		infoLabel.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		infoLabel.setFont(new Font("Segoe UI", Font.PLAIN, (int) (18*scaleY)));
 
 		// Thêm JLabel vào JPanel
 		panel.add(infoLabel, BorderLayout.CENTER);
