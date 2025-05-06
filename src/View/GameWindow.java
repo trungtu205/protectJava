@@ -103,7 +103,7 @@ public class GameWindow extends JFrame {
 		dialog.setContentPane(panel);
 		dialog.setVisible(true);
 	}
-
+	
 	private void showInfo() {
 		JDialog dialog = new JDialog(this, "About", true);
 		int realWidth = getWidth();

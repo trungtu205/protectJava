@@ -3,6 +3,7 @@ package Controller;
 import javax.swing.*;
 import Model.*;
 import View.GamePanel;
+import util.SoundPlayer;
 
 /**
  * Lớp GameController điều khiển logic chính của game, bao gồm di chuyển, va
@@ -64,12 +65,18 @@ public class GameController implements IGameController {
 				if (ball.getDy()  < 0)
 					ball.setDy(ball.getDy()-1);
 				gameState.setScore(gameState.getScore() + 1);
+				
+				// Âm thanh sau khi va chạm với paddle
+				SoundPlayer.playSound("hit.wav");
 			}
 
 			// Kiểm tra game over
 			if (ball.getY() + ball.getSize() >= GameConstants.GAME_HEIGHT) {
 				gameState.setGameOver(true);
 				gameState.checkHighScore();
+				
+				// Âm thanh sau khi game over
+				SoundPlayer.playSound("game_over.wav");
 			}
 		}
 	}

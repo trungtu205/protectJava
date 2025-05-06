@@ -72,7 +72,7 @@ public class GamePanel extends JPanel {
 			}
 		});
 	}
-
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -136,7 +136,6 @@ public class GamePanel extends JPanel {
 			g2d.drawString("Press P to resume", (int)((GameConstants.GAME_WIDTH/2 - 70) * scaleX), (int)((GameConstants.GAME_HEIGHT/2 + 20)  * scaleY));
 		}
 	}
-
 
 	/**
 	 * Cập nhật giao diện game.
