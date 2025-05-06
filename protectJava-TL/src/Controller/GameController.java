@@ -107,6 +107,7 @@ public class GameController implements IGameController {
 		gameState.setGameOver(false);
 		ball.reset();
 		paddle.reset();
+		lives=3;
 	}
 
 	/**

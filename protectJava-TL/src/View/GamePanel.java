@@ -1,11 +1,14 @@
 package View;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+
 import Controller.GameController;
 import Model.*;
 
@@ -14,6 +17,10 @@ import Model.*;
  */
 public class GamePanel extends JPanel {
 	private final Ball ball;
+	private BufferedImage ballImage, paddleImage; // chứa ảnh sprite của quả lựu đạn và người chơi
+
+	private BufferedImage spriteImg;
+
 	private final Paddle paddle;
 	private final GameState gameState;
 	private final GameController controller;
@@ -33,11 +40,19 @@ public class GamePanel extends JPanel {
 		this.gameState = gameState;
 		this.controller = controller;
 		this.gamewindow = gamewindow;
-		
+
 		setPreferredSize(new Dimension(GameConstants.GAME_WIDTH, GameConstants.GAME_HEIGHT));
 		setBackground(Color.DARK_GRAY);
 		setFocusable(true);
 		requestFocusInWindow();
+
+		try {
+			this.spriteImg = ImageIO.read(getClass().getResourceAsStream("/image/pic_transparent.png"));
+			ballImage = spriteImg.getSubimage(0, 0, 400, 576);
+			paddleImage = spriteImg.getSubimage(400, 0, 524, 576);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		// Thêm FocusListener để lấy lại focus khi mất
 		addFocusListener(new FocusAdapter() {
@@ -95,18 +110,19 @@ public class GamePanel extends JPanel {
 
 
 		// Áp dụng tỉ lệ khi vẽ paddle
-		g2d.setColor(Color.BLUE);
-		g2d.fillRect((int)(paddle.getX() * scaleX),
+		g2d.drawImage(paddleImage, (int)(paddle.getX() * scaleX),
 				(int)(paddle.getY() * scaleY),
-				(int)(paddle.getWidth() * scale),
-				(int)(paddle.getHeight() * scale));
+				(int)(paddle.getWidth() * scale ),
+				(int)(paddle.getHeight() * scale *2),null);
 
-		// Vẽ bóng
-		g2d.setColor(Color.YELLOW);
-		g2d.fillOval((int)(ball.getX() * scaleX),
+		// Vẽ lựu đạn
+		g2d.drawImage(ballImage,
+				(int)(ball.getX() * scaleX),
 				(int)(ball.getY() * scaleY),
 				(int)(ball.getSize() * scale),
-				(int)(ball.getSize() * scale));
+				(int)(ball.getSize() * scale),
+				null);
+
 
 		// Vẽ điểm
 		g2d.setColor(Color.green);

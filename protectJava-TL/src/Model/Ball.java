@@ -77,6 +77,7 @@ public class Ball {
 	 * Đặt lại vị trí và vận tốc của bóng về trạng thái ban đầu.
 	 */
 	public void reset() {
+
 		this.x = GameConstants.GAME_WIDTH / 2 - size / 2;
 		this.y = 0;
 		this.size = GameConstants.BALL_SIZE;
