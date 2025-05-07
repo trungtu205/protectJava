@@ -1,11 +1,14 @@
 package View;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+
 import Controller.GameController;
 import Model.*;
 
@@ -14,11 +17,15 @@ import Model.*;
  */
 public class GamePanel extends JPanel {
 	private final Ball ball;
+	private BufferedImage ballImage, paddleImage; // chứa ảnh sprite của quả lựu đạn và người chơi
+
+	private BufferedImage spriteImg;
+
 	private final Paddle paddle;
 	private final GameState gameState;
 	private final GameController controller;
-	private final GameWindow gamewindow;
-	
+	private final GameWindow gamewindow ;
+
 	/**
 	 * Khởi tạo GamePanel với các đối tượng game.
 	 *
@@ -38,6 +45,18 @@ public class GamePanel extends JPanel {
 		setBackground(Color.DARK_GRAY);
 		setFocusable(true);
 		requestFocusInWindow();
+
+		try {
+		    this.spriteImg = ImageIO.read(getClass().getResourceAsStream("/pic_transparent.png"));
+		    if (this.spriteImg == null) {
+		        System.err.println("Không tải được hình ảnh: /pic_transparent.png");
+		    }
+		    ballImage = spriteImg.getSubimage(0, 0, 400, 576);
+		    paddleImage = spriteImg.getSubimage(400, 0, 524, 576);
+		} catch (Exception e) {
+		    System.err.println("Lỗi khi tải hình ảnh");
+		    e.printStackTrace();
+		}
 
 		// Thêm FocusListener để lấy lại focus khi mất
 		addFocusListener(new FocusAdapter() {
@@ -63,16 +82,14 @@ public class GamePanel extends JPanel {
 						controller.resumeGame();
 				} else if (key == KeyEvent.VK_SPACE && gameState.isGameOver()) {
 					controller.startGame();
-				} else if(key == KeyEvent.VK_ESCAPE && gameState.isGameOver()) {
-					
-					gamewindow.showMenu();
-					
+				} else if (key == KeyEvent.VK_ESCAPE && gameState.isGameOver()) {
+					controller.resetGame(); // Đặt lại trạng thái game
+                    gamewindow.showMenu(); // Trở về menu
 				}
-				
 			}
 		});
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -97,24 +114,26 @@ public class GamePanel extends JPanel {
 
 
 		// Áp dụng tỉ lệ khi vẽ paddle
-		g2d.setColor(Color.BLUE);
-		g2d.fillRect((int)(paddle.getX() * scaleX),
+		g2d.drawImage(paddleImage, (int)(paddle.getX() * scaleX),
 				(int)(paddle.getY() * scaleY),
-				(int)(paddle.getWidth() * scale),
-				(int)(paddle.getHeight() * scale));
+				(int)(paddle.getWidth() * scale ),
+				(int)(paddle.getHeight() * scale *2),null);
 
-		// Vẽ bóng
-		g2d.setColor(Color.YELLOW);
-		g2d.fillOval((int)(ball.getX() * scaleX),
+		// Vẽ lựu đạn
+		g2d.drawImage(ballImage,
+				(int)(ball.getX() * scaleX),
 				(int)(ball.getY() * scaleY),
 				(int)(ball.getSize() * scale),
-				(int)(ball.getSize() * scale));
+				(int)(ball.getSize() * scale),
+				null);
+
 
 		// Vẽ điểm
 		g2d.setColor(Color.green);
-		g2d.setFont(new Font("Arial", Font.PLAIN, (int)(16 * scale)));
+		g2d.setFont(new Font("Arial", Font.PLAIN, (int)(15 * scale)));
 		g2d.drawString("Score: " + gameState.getScore(), (int)(10 * scaleX), (int)(25 * scaleY));
 		g2d.drawString("High Score: " + gameState.getHighScore(), (int)(10 * scaleX), (int)(45 * scaleY));
+		g2d.drawString("Lives: " + controller.getLives(), (int)(10 * scaleX), (int)(65 * scaleY));
 
 		// Game over
 		if (gameState.isGameOver()) {
@@ -131,11 +150,12 @@ public class GamePanel extends JPanel {
 		if (gameState.isPaused() && !gameState.isGameOver()) {
 			g2d.setColor(Color.RED);
 			g2d.setFont(new Font("Arial", Font.BOLD, (int)(40 * scaleY)));
-			g2d.drawString("PAUSED", (int)((GameConstants.GAME_WIDTH/2 - 70) * scaleX), (int)((GameConstants.GAME_HEIGHT/2) * scaleY));
+			g2d.drawString("PAUSED", (int)((GameConstants.GAME_WIDTH/2 -70) * scaleX), (int)((GameConstants.GAME_HEIGHT/2) * scaleY));
 			g2d.setFont(new Font("Arial", Font.PLAIN, (int)(20 * scaleY)));
-			g2d.drawString("Press P to resume", (int)((GameConstants.GAME_WIDTH/2 - 70) * scaleX), (int)((GameConstants.GAME_HEIGHT/2 + 20)  * scaleY));
+			g2d.drawString("Press D to resume", (int)((GameConstants.GAME_WIDTH/2 -70) * scaleX), (int)((GameConstants.GAME_HEIGHT/2 + 20) * scaleY));
 		}
 	}
+
 
 	/**
 	 * Cập nhật giao diện game.

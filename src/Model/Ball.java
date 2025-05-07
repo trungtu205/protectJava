@@ -7,8 +7,8 @@ import java.awt.Rectangle;
  * của bóng.
  */
 public class Ball {
-	private int x, y; // Tọa độ bóng
-	private int dx, dy; // Vận tốc theo hướng
+	private double x, y; // Tọa độ bóng
+	private double dx, dy; // Vận tốc theo hướng
 	private int size; // Kích thước bóng
 
 	/**
@@ -70,50 +70,51 @@ public class Ball {
 	 * @return Hình chữ nhật đại diện cho vùng chiếm bởi bóng
 	 */
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, size, size);
+		return new Rectangle((int) x, (int) y, size, size);
 	}
 
 	/**
 	 * Đặt lại vị trí và vận tốc của bóng về trạng thái ban đầu.
 	 */
 	public void reset() {
+
 		this.x = GameConstants.GAME_WIDTH / 2 - size / 2;
-		this.y = GameConstants.GAME_HEIGHT / 2 - size / 2;
+		this.y = 0;
 		this.size = GameConstants.BALL_SIZE;
 		this.dx = GameConstants.BALL_SPEED;
 		this.dy = GameConstants.BALL_SPEED;
 	}
 
 	// Getter và Setter
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 
-	public void setX(final int x) {
+	public void setX(final double x) {
 		this.x = x;
 	}
 
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 
-	public void setY(final int y) {
+	public void setY(final double y) {
 		this.y = y;
 	}
 
-	public int getDx() {
+	public double getDx() {
 		return dx;
 	}
 
-	public void setDx(final int dx) {
+	public void setDx(final double dx) {
 		this.dx = dx;
 	}
 
-	public int getDy() {
+	public double getDy() {
 		return dy;
 	}
 
-	public void setDy(final int dy) {
+	public void setDy(final double dy) {
 		this.dy = dy;
 	}
 
