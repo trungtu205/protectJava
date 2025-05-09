@@ -37,7 +37,7 @@ public class Ball {
 		// Kiểm tra va chạm với biên trái/phải
 		if (x <= 0 || x + size >= panelWidth) {
 			bounceHorizontal();
-			x = Math.max(0, Math.min(x, panelWidth - size)); // Giữ bóng trong biên
+			x = Math.max(0, Math.min(x, panelWidth - size)); // Giữ bóng trong biên trái- phải
 		}
 		// Kiểm tra va chạm với biên trên
 		if (y <= 0) {
@@ -122,7 +122,4 @@ public class Ball {
 		return size;
 	}
 
-	public void setSize(final int size) {
-		this.size = size;
-	}
 }

@@ -9,8 +9,8 @@ public interface IGameController {
     void movePaddleRight(); // Di chuyển thanh trượt sang phải
     void startGame(); // Bắt đầu game mới
     void resetGame(); // Đặt lại game
-    void pauseGame();
-    void resumeGame();
+    void pauseGame();   //tạm dừng game
+    void resumeGame();  //tiếp tục lại trò chơi sau khi đã tạm dừng
     void exitGame(); // Thoát game
     void setGamePanel(View.GamePanel gamePanel); // Đặt panel giao diện
 }

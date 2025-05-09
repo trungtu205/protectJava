@@ -13,7 +13,7 @@ public class GameController implements IGameController {
 	private Paddle paddle;
 	private GameState gameState;
 	private GamePanel gamePanel;
-	private int lives=3;
+	private int lives=3;	//số mạng sống
 
 	/**
 	 * Khởi tạo GameController với các đối tượng game.
@@ -65,8 +65,6 @@ public class GameController implements IGameController {
 				if (ball.getDy()  < 0)
 					ball.setDy(ball.getDy()-0.5);
 				gameState.setScore(gameState.getScore() + 1);
-				System.out.println("x: " + ball.getDx() );
-				System.out.println( "y: "+ ball.getDy());
 			}
 
 			// Kiểm tra game over

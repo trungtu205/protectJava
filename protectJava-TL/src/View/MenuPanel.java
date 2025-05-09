@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class MenuPanel extends JPanel {
 	private JLabel titleLabel, subtitleLabel;
-	private JButton startButton, instructionButton, soundButton, infoButton, exitButton;
+	private JButton startButton, instructionButton, infoButton, exitButton;
 	private JButton[] buttons;
 
 	private final Color mainColor = new Color(41, 128, 185);
@@ -23,16 +23,15 @@ public class MenuPanel extends JPanel {
 	}
 
 	private void initComponents() {
-		titleLabel = createLabel("BOUNCE BALL", new Font("Montserrat", Font.BOLD, 42), accentColor);
+		titleLabel = createLabel("DON'T DROP IT!", new Font("Montserrat", Font.BOLD, 42), accentColor);
 		subtitleLabel = createLabel("ADVENTURE", new Font("Montserrat", Font.ITALIC, 24), Color.WHITE);
 
 		startButton = createButton("START GAME", new Color(95, 195, 124));
 		instructionButton = createButton("INSTRUCTIONS");
-		soundButton = createButton("SOUND: ON");
 		infoButton = createButton("ABOUT");
 		exitButton = createButton("EXIT", new Color(231, 76, 60));
 
-		buttons = new JButton[]{startButton, instructionButton, soundButton, infoButton, exitButton};
+		buttons = new JButton[]{startButton, instructionButton, infoButton, exitButton};
 	}
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -119,10 +118,6 @@ public class MenuPanel extends JPanel {
 
 	public void addInstructionListener(ActionListener listener) {
 		instructionButton.addActionListener(listener);
-	}
-
-	public void addSoundListener(ActionListener listener) {
-		soundButton.addActionListener(listener);
 	}
 
 	public void addInfoListener(ActionListener listener) {
