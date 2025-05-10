@@ -24,7 +24,7 @@ public class MenuPanel extends JPanel {
     }
 
     private void initComponents() {
-        titleLabel = createLabel("BOUNCE BALL", new Font("Montserrat", Font.BOLD, 42), accentColor);
+        titleLabel = createLabel("DON'T DROP IT", new Font("Montserrat", Font.BOLD, 42), accentColor);
         subtitleLabel = createLabel("ADVENTURE", new Font("Montserrat", Font.ITALIC, 24), Color.WHITE);
 
         startButton = createButton("START GAME", new Color(95, 195, 124));

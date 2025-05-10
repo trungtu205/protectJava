@@ -16,7 +16,7 @@ public class GameWindow extends JFrame {
      * Khởi tạo cửa sổ game.
      */
     public GameWindow() {
-        setTitle("Bounce Ball Game");
+        setTitle("DON'T DROP IT");
         setSize(GameConstants.GAME_WIDTH + 16, GameConstants.GAME_HEIGHT + 39);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -110,7 +110,7 @@ public class GameWindow extends JFrame {
         panel.setLayout(new BorderLayout());
         panel.setBackground(new Color(44, 62, 80));
 
-        JLabel infoLabel = new JLabel("<html><p style='color:white; font-size:18px*scaleX;'>Bounce Ball Adventure<br>Version 1.0<br>Developed by TuLaLiTeam!</p></html>");
+        JLabel infoLabel = new JLabel("<html><p style='color:white; font-size:18px*scaleX;'>Don't Drop It Adventure<br>Version 1.0<br>Developed by TuLaLiTeam!</p></html>");
         infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
         infoLabel.setVerticalAlignment(SwingConstants.CENTER);
         infoLabel.setFont(new Font("Segoe UI", Font.PLAIN, (int) (18 * scaleY)));
