@@ -53,6 +53,8 @@ public class GameWindow extends JFrame {
 	 */
 	private void startGame() {
 		Ball ball = new Ball(GameConstants.GAME_WIDTH / 2, GameConstants.GAME_HEIGHT / 2);
+		Ball ball2 = new Ball(GameConstants.GAME_WIDTH / 2 +10, GameConstants.GAME_HEIGHT / 2  +10);
+
 		Paddle paddle = new Paddle(GameConstants.PADDLE_START_X, GameConstants.PADDLE_START_Y);
 		GameState gameState = new GameState();
 		controller = new GameController(ball, paddle, gameState, null);
@@ -120,7 +122,7 @@ public class GameWindow extends JFrame {
 		panel.setBackground(new Color(44, 62, 80)); // Màu nền đậm
 
 		// Tạo JLabel với thông tin về game
-		JLabel infoLabel = new JLabel("<html><p style='color:white; font-size:18px*scaleX;'>DON'T DROP IT!<br>Version 1.0<br>Developed by TuLaLiTeam!</p></html>");
+		JLabel infoLabel = new JLabel("<html><p style='color:white; font-size:18px*scaleX;'>GAME DON'T DROP IT!<br>Version 1.0<br>Developed by TuLaLiTeam!</p></html>");
 		infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		infoLabel.setVerticalAlignment(SwingConstants.CENTER);
 		infoLabel.setFont(new Font("Segoe UI", Font.PLAIN, (int) (18*scaleY)));

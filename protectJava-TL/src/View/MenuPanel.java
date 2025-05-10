@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class MenuPanel extends JPanel {
 	private JLabel titleLabel, subtitleLabel;
-	private JButton startButton, instructionButton, infoButton, exitButton;
+	private JButton startButton, instructionButton, infoButton, soundButton,  exitButton;
 	private JButton[] buttons;
 
 	private final Color mainColor = new Color(41, 128, 185);
@@ -28,10 +28,11 @@ public class MenuPanel extends JPanel {
 
 		startButton = createButton("START GAME", new Color(95, 195, 124));
 		instructionButton = createButton("INSTRUCTIONS");
+		soundButton = createButton("SOUND: ON");
 		infoButton = createButton("ABOUT");
 		exitButton = createButton("EXIT", new Color(231, 76, 60));
 
-		buttons = new JButton[]{startButton, instructionButton, infoButton, exitButton};
+		buttons = new JButton[]{startButton, instructionButton, soundButton,  infoButton, exitButton};
 	}
 	@Override
 	protected void paintComponent(Graphics g) {
